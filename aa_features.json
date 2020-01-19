@@ -1,0 +1,122 @@
+{
+    "a": {
+        "charge": 0,
+        "hydrophobicity": 41,
+        "pks": [9.87,2.35],
+        "solubility": 15.8
+    },
+    "r": {
+        "charge": 1,
+        "hydrophobicity": -14,
+        "pks": [9.09,2.18],
+        "solubility": 71.8
+    },
+    "n": {
+        "charge": 0,
+        "hydrophobicity": -28,
+        "pks": [8.8,2.02],
+        "solubility": 2.4
+    },
+    "d": {
+        "charge": -1,
+        "hydrophobicity": -55,
+        "pks": [9.6,1.88],
+        "solubility": 0.42
+    },
+    "c": {
+        "charge": 0,
+        "hydrophobicity": 49,
+        "pks": [10.78,1.71],
+        "solubility": 100
+    },
+    "e": {
+        "charge": -1,
+        "hydrophobicity": -31,
+        "pks": [9.67,2.19],
+        "solubility": 0.72
+    },
+    "q": {
+        "charge": 0,
+        "hydrophobicity": -10,
+        "pks": [9.13,2.17],
+        "solubility": 2.6
+    },
+    "g": {
+        "charge": 0,
+        "hydrophobicity": 0,
+        "pks": [9.6,2.34],
+        "solubility": 22.5
+    },
+    "h": {
+        "charge": 1,
+        "hydrophobicity": 8,
+        "pks": [8.97,1.78],
+        "solubility": 4.19
+    },
+    "i": {
+        "charge": 0,
+        "hydrophobicity": 99,
+        "pks": [9.76,2.32],
+        "solubility": 3.36
+    },
+    "l": {
+        "charge": 0,
+        "hydrophobicity": 97,
+        "pks": [9.6,2.36],
+        "solubility": 2.37
+    },
+    "k": {
+        "charge": 1,
+        "hydrophobicity": -23,
+        "pks": [10.28,8.9],
+        "solubility": 100
+    },
+    "m": {
+        "charge": 0,
+        "hydrophobicity": 74,
+        "pks": [9.21,2.28],
+        "solubility": 5.14
+    },
+    "f": {
+        "charge": 0,
+        "hydrophobicity": 100,
+        "pks": [9.24,2.58],
+        "solubility": 2.7
+    },
+    "p": {
+        "charge": 0,
+        "hydrophobicity": -46,
+        "pks": [10.6,1.99],
+        "solubility": 1.54
+    },
+    "s": {
+        "charge": 0,
+        "hydrophobicity": -5,
+        "pks": [9.15,2.21],
+        "solubility": 36.2
+    },
+    "t": {
+        "charge": 0,
+        "hydrophobicity": 13,
+        "pks": [9.12,2.15],
+        "solubility": 100
+    },
+    "w": {
+        "charge": 0,
+        "hydrophobicity": 97,
+        "pks": [9.39,2.38],
+        "solubility": 1.06
+    },
+    "y": {
+        "charge": 0,
+        "hydrophobicity": 63,
+        "pks": [9.11,2.2],
+        "solubility": 0.038
+    },
+    "v": {
+        "charge": 0,
+        "hydrophobicity": 76,
+        "pks": [9.72,2.29],
+        "solubility": 5.6  
+    }      
+}
