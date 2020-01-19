@@ -145,16 +145,7 @@ def main(_):
   tf.logging.set_verbosity(tf.logging.INFO)
 
   processors = {
-      "cola": classifier_utils.ColaProcessor,
-      "mnli": classifier_utils.MnliProcessor,
-      "mismnli": classifier_utils.MisMnliProcessor,
-      "mrpc": classifier_utils.MrpcProcessor,
-      "rte": classifier_utils.RteProcessor,
-      "sst-2": classifier_utils.Sst2Processor,
-      "sts-b": classifier_utils.StsbProcessor,
-      "qqp": classifier_utils.QqpProcessor,
-      "qnli": classifier_utils.QnliProcessor,
-      "wnli": classifier_utils.WnliProcessor,
+      "scope": classifier_utils.ScopeProcessor,
   }
 
   tokenization.validate_case_matches_checkpoint(FLAGS.do_lower_case,
@@ -356,12 +347,13 @@ def main(_):
 
     output_eval_file = os.path.join(FLAGS.output_dir, "eval_results.txt")
 
-    if task_name == "sts-b":
-      key_name = "pearson"
-    elif task_name == "cola":
-      key_name = "matthew_corr"
-    else:
-      key_name = "eval_accuracy"
+    #!TODO: figure out why these other metrics would be used
+    # if task_name == "sts-b":
+    #   key_name = "pearson"
+    # elif task_name == "cola":
+    #   key_name = "matthew_corr"
+    # else:
+    key_name = "eval_accuracy"
 
     global_step, best_perf_global_step, best_perf = _best_trial_info()
     writer = tf.gfile.GFile(output_eval_file, "w")
