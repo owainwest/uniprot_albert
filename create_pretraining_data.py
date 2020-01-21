@@ -253,8 +253,7 @@ def create_float_feature(values):
 def create_training_instances(input_files, tokenizer, max_seq_length,
                               dupe_factor, short_seq_prob, masked_lm_prob,
                               max_predictions_per_seq, rng, aa_features, 
-                              do_hydro, do_charge, do_pks, do_solubility,
-                              k):
+                              do_hydro, do_charge, do_pks, do_solubility):
   """Create `TrainingInstance`s from raw text."""
   all_documents = [[]]
 
@@ -306,8 +305,7 @@ def create_training_instances(input_files, tokenizer, max_seq_length,
 def create_instances_from_document(
     all_documents, document_index, max_seq_length, short_seq_prob,
     masked_lm_prob, max_predictions_per_seq, vocab_words, rng, aa_features, 
-                              do_hydro, do_charge, do_pks, do_solubility,
-                              k):
+                              do_hydro, do_charge, do_pks, do_solubility):
   """Creates `TrainingInstance`s for a single document."""
   document = all_documents[document_index]
 
@@ -348,7 +346,7 @@ def create_instances_from_document(
     (tokens, masked_lm_positions, masked_lm_labels, token_boundary,
       hydrophobicities, charges, pks, solubilities) = create_local_predictions(
           tokens, masked_lm_prob, max_predictions_per_seq, vocab_words, rng, 
-          aa_features, do_hydro, do_charge, do_pks, do_solubility, k)
+          aa_features, do_hydro, do_charge, do_pks, do_solubility)
 
     instance = TrainingInstance(
         tokens=tokens,
@@ -405,7 +403,7 @@ def is_start_piece(piece):
 
 def create_local_predictions(tokens, masked_lm_prob,
                                  max_predictions_per_seq, vocab_words, rng,
-                                 aa_features, do_hydro, do_charge, do_pks, do_solubility, k):
+                                 aa_features, do_hydro, do_charge, do_pks, do_solubility):
   """Creates the predictions for the masked LM objective."""
 
   cand_indexes = []
@@ -677,8 +675,7 @@ def main(_):
       input_files, tokenizer, FLAGS.max_seq_length, FLAGS.dupe_factor,
       FLAGS.short_seq_prob, FLAGS.masked_lm_prob, FLAGS.max_predictions_per_seq,
       rng, aa_features, 
-      FLAGS.do_hydro, FLAGS.do_charge, FLAGS.do_pks, FLAGS.do_solubility,
-      FLAGS.k)
+      FLAGS.do_hydro, FLAGS.do_charge, FLAGS.do_pks, FLAGS.do_solubility)
 
   tf.logging.info("number of instances: %i", len(instances))
 

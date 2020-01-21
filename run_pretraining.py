@@ -27,7 +27,7 @@ import tensorflow as tf
 from tensorflow.contrib import cluster_resolver as contrib_cluster_resolver
 from tensorflow.contrib import data as contrib_data
 from tensorflow.contrib import tpu as contrib_tpu
-
+from tf.estimator import BestExporter, EvalSpec
 flags = tf.flags
 
 FLAGS = flags.FLAGS
@@ -793,7 +793,18 @@ def main(_):
         max_seq_length=FLAGS.max_seq_length,
         max_predictions_per_seq=FLAGS.max_predictions_per_seq,
         is_training=True)
-    estimator.train(input_fn=train_input_fn, max_steps=FLAGS.num_train_steps)
+
+    # ~TODO:finish
+    # exporter = BestExporter(
+    #       compare_fn=_loss_smaller,
+    #       exports_to_keep=5)
+
+    # eval_spec = EvalSpec(
+    #     train_input_fn,
+    #     steps,
+    #     exporters)
+    
+    estimator.train(input_fn=train_input_fn, max_steps=FLAGS.num_train_steps, eval_spec=eval_spec)
 
   if FLAGS.do_eval:
     tf.logging.info("***** Running evaluation *****")
@@ -831,6 +842,19 @@ def main(_):
               tf.gfile.Copy(src_ckpt, tgt_ckpt, overwrite=True)
               writer.write("saved {} to {}\n".format(src_ckpt, tgt_ckpt))
 
+
+def custom_metric(labels, predictions):
+    # This function will be called by the Estimator, passing its predictions.
+    # Let's suppose you want to add the "mean" metric...
+
+    # Accessing the class predictions (careful, the key name may change from one canned Estimator to another)
+    predicted_classes = predictions["class_ids"]  
+
+    # Defining the metric (value and update tensors):
+    custom_metric = tf.metrics.mean(labels, predicted_classes, name="custom_metric")
+
+    # Returning as a dict:
+    return {"custom_metric": custom_metric}
 
 if __name__ == "__main__":
   flags.mark_flag_as_required("input_file")
