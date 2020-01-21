@@ -537,7 +537,7 @@ def create_local_predictions(tokens, masked_lm_prob,
   pks = [p.pks for p in masked_lms] if do_pks else None
   solubilities = [p.solubility for p in masked_lms] if do_solubility else None
 
-  return (output_tokens, masked_lm_positions, masked_lm_labels, token_boundary, ydrophobicities, charges, pks, solubilities)
+  return (output_tokens, masked_lm_positions, masked_lm_labels, token_boundary, hydrophobicities, charges, pks, solubilities)
 
 
 def truncate_seq_pair(tokens_a, tokens_b, max_num_tokens, rng):
@@ -610,7 +610,6 @@ def get_pks(peptide, aa_features):
     kmer_values = [sum(sum(aa) for aa in kmer) for kmer in kmers]
     lower_bound = np.percentile(kmer_values, 33.33)
     upper_bound = np.percentile(kmer_values, 66.67)  
-    print(lower_bound, upper_bound)
     DEFAULT_GUESS = statistics.median(kmer_values)
 
     res = 0
@@ -619,6 +618,7 @@ def get_pks(peptide, aa_features):
             res += sum(aa_features[amino_acid]["pks"])
         else:
             res += DEFAULT_GUESS
+
     if res < lower_bound:
         return 0
     elif res < upper_bound:
