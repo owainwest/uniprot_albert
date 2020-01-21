@@ -295,8 +295,7 @@ def create_training_instances(input_files, tokenizer, max_seq_length,
           create_instances_from_document(
               all_documents, document_index, max_seq_length, short_seq_prob,
               masked_lm_prob, max_predictions_per_seq, vocab_words, rng, aa_features, 
-                              do_hydro, do_charge, do_pks, do_solubility,
-                              k))
+                              do_hydro, do_charge, do_pks, do_solubility))
 
   rng.shuffle(instances)
   return instances
