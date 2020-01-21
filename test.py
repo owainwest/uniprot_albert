@@ -8,12 +8,12 @@ from itertools import combinations
 import numpy as np 
 import statistics
 
-def get_hydrophobicity(peptide, aa_features):
+def get_pks(peptide, aa_features):
     k = len(peptide)
-    
-    values = [feats["hydrophobicity"] for feats in aa_features.values()]
-    kmer_values = [sum(k_values) for k_values in combinations(values, k)]
+    values = [feats["pks"] for feats in aa_features.values()]
 
+    kmers = list(combinations(values, k))
+    kmer_values = [sum(sum(aa) for aa in kmer) for kmer in kmers]
     lower_bound = np.percentile(kmer_values, 33.33)
     upper_bound = np.percentile(kmer_values, 66.67)  
     print(lower_bound, upper_bound)
@@ -22,10 +22,9 @@ def get_hydrophobicity(peptide, aa_features):
     res = 0
     for amino_acid in peptide:
         if amino_acid in aa_features:
-            res += aa_features[amino_acid]["hydrophobicity"]
+            res += sum(aa_features[amino_acid]["pks"])
         else:
             res += DEFAULT_GUESS
-            
     if res < lower_bound:
         return 0
     elif res < upper_bound:
@@ -33,9 +32,9 @@ def get_hydrophobicity(peptide, aa_features):
     else:
         return 2
 
-with open(F"./aa_features.json", "r") as aa_feature_file:
+with open("./aa_features.json", "r") as aa_feature_file:
     aa_feature_text = aa_feature_file.read()
 aa_features = json.loads(aa_feature_text)
 
 
-print(get_hydrophobicity("agu", aa_features))
+print(get_pks("agu", aa_features))
