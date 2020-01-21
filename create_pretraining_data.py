@@ -112,7 +112,8 @@ flags.DEFINE_string(
 class TrainingInstance(object):
   """A single training instance (sentence pair)."""
 
-  def __init__(self, tokens, segment_ids, masked_lm_positions, masked_lm_labels, token_boundary):
+  def __init__(self, tokens, segment_ids, masked_lm_positions, masked_lm_labels, token_boundary,
+               hydrophobicities, charges, pks, solubilities):
     self.tokens = tokens
     self.segment_ids = segment_ids
     self.token_boundary = token_boundary
@@ -351,7 +352,11 @@ def create_instances_from_document(
         segment_ids=segment_ids,
         token_boundary=token_boundary,
         masked_lm_positions=masked_lm_positions,
-        masked_lm_labels=masked_lm_labels)
+        masked_lm_labels=masked_lm_labels,
+        hydrophobicities=hydrophobicities, 
+        charges=charges, 
+        pks=pks, 
+        solubilities=solubilities)
 
     if lost > 20:
       document[i] = document[i][target_seq_length:]
