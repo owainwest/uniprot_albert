@@ -112,8 +112,7 @@ flags.DEFINE_string(
 class TrainingInstance(object):
   """A single training instance (sentence pair)."""
 
-  def __init__(self, tokens, segment_ids, masked_lm_positions, masked_lm_labels,
-               is_random_next, token_boundary):
+  def __init__(self, tokens, segment_ids, masked_lm_positions, masked_lm_labels, token_boundary):
     self.tokens = tokens
     self.segment_ids = segment_ids
     self.token_boundary = token_boundary
