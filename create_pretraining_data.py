@@ -319,15 +319,15 @@ def create_instances_from_document(
   i = 0
   while i < len(document):
     if len(document[i]) == 0:
-      print('> Doc[i] was empty, i = ', i)
+      # print('> Doc[i] was empty, i = ', i)
       continue
 
     lost = len(document[i]) - target_seq_length
     tokens_a = document[i][:target_seq_length]
 
     if (len(tokens_a) == 0):
-      print('index', i)
-      print(document[i])
+      # print('index', i)
+      # print(document[i])
       i += 1
       continue
 
@@ -568,7 +568,7 @@ def get_hydrophobicity(peptide, aa_features):
     kmer_values = [sum(k_values) for k_values in combinations(values, k)]
     lower_bound = np.percentile(kmer_values, 33.33)
     upper_bound = np.percentile(kmer_values, 66.67)  
-    print(lower_bound, upper_bound)
+    # print(lower_bound, upper_bound)
     DEFAULT_GUESS = statistics.median(kmer_values)
 
     res = 0
@@ -590,7 +590,7 @@ def get_charge(peptide, aa_features):
     kmer_values = [sum(k_values) for k_values in combinations(values, k)]
     lower_bound = np.percentile(kmer_values, 33.33)
     upper_bound = np.percentile(kmer_values, 66.67)  
-    print(lower_bound, upper_bound)
+    # print(lower_bound, upper_bound)
     DEFAULT_GUESS = statistics.median(kmer_values)
 
     res = 0
@@ -636,7 +636,7 @@ def get_solubility(peptide, aa_features):
     kmer_values = [sum(k_values) for k_values in combinations(values, k)]
     lower_bound = np.percentile(kmer_values, 33.33)
     upper_bound = np.percentile(kmer_values, 66.67)  
-    print(lower_bound, upper_bound)
+    # print(lower_bound, upper_bound)
     DEFAULT_GUESS = statistics.median(kmer_values)
 
     res = 0
